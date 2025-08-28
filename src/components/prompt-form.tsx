@@ -78,7 +78,7 @@ export function PromptForm({ onSubmit }: PromptFormProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <Card className="w-full">
+        <Card className="w-full border-border/40 bg-card/60">
           <CardHeader>
             <CardTitle>ساخت پرامپت جدید</CardTitle>
             <CardDescription>
