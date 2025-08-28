@@ -143,9 +143,9 @@ export function PromptForm({ onSubmit }: PromptFormProps) {
                       {formats.map((format) => (
                         <FormItem
                           key={format.id}
-                          className="flex items-center space-x-3 space-y-0 rtl:space-x-reverse"
+                          className="flex items-center space-y-0"
                         >
-                           <FormLabel className="font-normal">
+                           <FormLabel className="font-normal me-3">
                             {format.label}
                           </FormLabel>
                           <FormControl>
