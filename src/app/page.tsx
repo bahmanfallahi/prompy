@@ -9,10 +9,10 @@ export default function Home() {
         <Bot className="h-12 w-12 text-primary" />
       </div>
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter mb-4 font-headline">
-        Farsi PromptSmith
+        پرامپی
       </h1>
       <p className="max-w-2xl text-lg text-muted-foreground md:text-xl mb-8">
-        با Farsi PromptSmith، پرامپت‌های حرفه‌ای و بهینه برای هوش مصنوعی بسازید.
+        با پرامپی، پرامپت‌های حرفه‌ای و بهینه برای هوش مصنوعی بسازید.
         به سادگی نیاز خود را توصیف کنید و ما بهترین پرامپت را برای شما تولید
         می‌کنیم.
       </p>

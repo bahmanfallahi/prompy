@@ -9,7 +9,7 @@ import { Toaster } from '@/components/ui/toaster';
 const vazirmatn = Vazirmatn({ subsets: ['arabic', 'latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
-  title: 'Farsi PromptSmith',
+  title: 'پرامپی',
   description: 'ابزاری برای ساخت پرامپت‌های بهینه فارسی',
 };
 

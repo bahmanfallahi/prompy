@@ -10,7 +10,7 @@ export function Header() {
           className="flex items-center gap-2 font-bold text-lg transition-colors hover:text-primary"
         >
           <Bot className="h-6 w-6 text-primary" />
-          <span className="font-headline">Farsi PromptSmith</span>
+          <span className="font-headline">پرامپی</span>
         </Link>
       </div>
     </header>
