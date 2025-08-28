@@ -30,35 +30,100 @@ const prompt = ai.definePrompt({
   name: 'generateOptimizedPromptPrompt',
   input: {schema: GenerateOptimizedPromptInputSchema},
   output: {schema: GenerateOptimizedPromptOutputSchema},
-  prompt: `You are an expert prompt engineer specializing in creating optimized prompts for various use cases.
+  prompt: `You are an expert prompt engineer. Your task is to generate an optimized prompt based on a user's request.
+The user provides a description, a use case, and a desired output format.
 
-You will use the user's description of their desired content, the selected use case, and the desired output format to generate an optimized prompt that is tailored for generating that content.
+User Request:
+- Description: {{{description}}}
+- Use Case: {{{useCase}}}
+- Desired Format: {{{format}}}
 
-Description: {{{description}}}
-Use Case: {{{useCase}}}
-Format: {{{format}}}
+Your generated prompt must be in Persian and structured according to the "Desired Format". Follow these examples precisely for the output format:
 
-{{#if format.XML}}
+---
+### Format Examples
+
+**1. If the format is XML:**
+The output should be a machine-readable XML structure. This is for when the output will be processed by another script or system.
+
+Example of expected output structure:
 <prompt>
   <instruction>
-    متن زیر را برای مدیران غیرفنی خلاصه کن. زبان خلاصه باید ساده و قابل فهم باشد.
+    یک هدر وبسایت با ساختار زیر طراحی کن.
   </instruction>
-  <context>
-    این متن، یک گزارش مالی در مورد عملکرد سه ماهه سوم شرکت است.
-  </context>
-  <document_to_summarize>
-    [متن طولانی گزارش مالی در اینجا قرار می‌گیرد]
-  </document_to_summarize>
+  <structure>
+    <header>
+      <logo src="logo.png" alt="Company Logo" responsive="true"/>
+      <navigation>
+        <menu-item name="Home" link="/"/>
+        <menu-item name="About" link="/about"/>
+        <menu-item name="Services" link="/services"/>
+        <menu-item name="Contact" link="/contact"/>
+      </navigation>
+      <utilities>
+        <search placeholder="Search..."/>
+        <user-menu>
+          <item name="Login"/>
+          <item name="Register"/>
+        </user-menu>
+      </utilities>
+    </header>
+  </structure>
+  <notes>
+    ساختار باید کاملاً ماشینی و قابل پردازش باشد.
+  </notes>
 </prompt>
-{{else}}
-You will generate an optimized prompt. This is the user's request:
-{{{description}}}
 
-The use case is: {{{useCase}}}.
-The desired format is: {{{format}}}.
+**2. If the format is Markdown:**
+The output should be human-readable with simple formatting. This is ideal for documentation or non-technical teams.
 
-Create a well-structured and effective prompt based on this information. If the format is Markdown, use appropriate Markdown syntax. If it is mixed, you can combine different formatting styles.
-{{/if}}`,
+Example of expected output structure:
+## درخواست: طراحی ساختار هدر وبسایت
+
+- **لوگو (Logo)**
+  - فایل: \`logo.png\`
+  - واکنش‌گرا (Responsive): ✅
+
+- **منوی اصلی (Main Navigation)**
+  - خانه (\`/\`)
+  - درباره ما (\`/about\`)
+  - خدمات (\`/services\`)
+  - تماس با ما (\`/contact\`)
+
+- **ابزارها (Utilities)**
+  - نوار جستجو (متن جایگزین: "جستجو...")
+  - منوی کاربری: ورود | ثبت‌نام
+
+**یادداشت:** این ساختار برای ارائه به تیم غیرفنی و داکیومنتیشن مناسب است.
+
+**3. If the format is Mixed (XML + Markdown):**
+The output should be a combination of machine-readable structure and human-readable comments.
+
+Example of expected output structure:
+<header>
+  <logo>
+    ## Logo
+    File: \`logo.png\`
+    Responsive: ✅
+  </logo>
+  
+  <navigation>
+    ## Main Navigation
+    - Home (\`/\`)
+    - About (\`/about\`)
+    - Services (\`/services\`)
+    - Contact (\`/contact\`)
+  </navigation>
+  
+  <utilities>
+    ## Utilities
+    - Search bar (placeholder: "Search...")
+    - User Menu: **Login | Register**
+  </utilities>
+</header>
+---
+
+Now, based on the user's request (Description: '{{{description}}}', Use Case: '{{{useCase}}}'), generate the complete and optimized prompt in the '{{{format}}}' format. The prompt must be in Persian.`,
 });
 
 const generateOptimizedPromptFlow = ai.defineFlow(
@@ -68,14 +133,7 @@ const generateOptimizedPromptFlow = ai.defineFlow(
     outputSchema: GenerateOptimizedPromptOutputSchema,
   },
   async input => {
-    // A little hack to make the Handlebars `if` work as expected for a string value.
-    const modifiedInput = {
-      ...input,
-      format: {
-        [input.format]: true,
-      },
-    };
-    const {output} = await prompt(modifiedInput);
+    const {output} = await prompt(input);
     return output!;
   }
 );
