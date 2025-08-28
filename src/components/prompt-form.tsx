@@ -192,7 +192,7 @@ export function PromptForm({ onSubmit }: PromptFormProps) {
                           key={format.id}
                           className="flex items-center space-y-0"
                         >
-                          <Label htmlFor={format.id} className="font-normal mr-3 cursor-pointer">
+                          <Label htmlFor={format.id} className="font-normal cursor-pointer mr-3">
                             {format.label}
                           </Label>
                           <FormControl>
@@ -229,7 +229,7 @@ export function PromptForm({ onSubmit }: PromptFormProps) {
           </CardContent>
           <CardFooter>
             <Button type="submit" size="lg">
-              ساخت پرامپت
+              🚀 پرامپی بزن بریم
             </Button>
           </CardFooter>
         </Card>
