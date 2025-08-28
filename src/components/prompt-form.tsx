@@ -138,7 +138,7 @@ export function PromptForm({ onSubmit }: PromptFormProps) {
                     <RadioGroup
                       onValueChange={field.onChange}
                       defaultValue={field.value}
-                      className="flex flex-col space-y-1 items-start"
+                      className="flex flex-col space-y-1"
                     >
                       {formats.map((format) => (
                         <FormItem
