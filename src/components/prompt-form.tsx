@@ -24,6 +24,12 @@ import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import type { GenerateOptimizedPromptInput } from '@/ai/flows/generate-prompt';
 import { BrainCircuit, FileCode2, FlaskConical, PencilRuler } from 'lucide-react';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 const useCaseEnum = z.enum([
   'Tolid-e-mohtava',
@@ -134,6 +140,47 @@ export function PromptForm({ onSubmit }: PromptFormProps) {
                   <FormLabel className="text-base font-semibold">
                     ۲. فرمت خروجی را انتخاب کنید
                   </FormLabel>
+                  <Accordion type="single" collapsible className="w-full">
+                    <AccordionItem value="item-1" className="border-b-0">
+                      <AccordionTrigger className="text-sm font-normal text-muted-foreground py-2 hover:no-underline">
+                        🔎 راهنمای انتخاب فرمت پرامپت
+                      </AccordionTrigger>
+                      <AccordionContent className="p-4 bg-muted/50 rounded-md">
+                        <p className="mb-4">
+                          برای اینکه پرامپت شما بهترین نتیجه رو بده، باید تعیین کنید خروجی چه ساختاری داشته باشه:
+                        </p>
+                        <ul className="space-y-4">
+                          <li>
+                            <strong className="flex items-center gap-2"><span>🏗️</span><span>XML Tag</span></strong>
+                            <p className="text-sm text-muted-foreground mt-1 pr-8">
+                              اگر می‌خواید خروجی خیلی دقیق و ساختاریافته باشه.
+                              <br/>
+                              <strong>مثال:</strong> ساختار هدر سایت یا تعریف دیتابیس.
+                            </p>
+                          </li>
+                          <li>
+                            <strong className="flex items-center gap-2"><span>✍️</span><span>Markdown</span></strong>
+                            <p className="text-sm text-muted-foreground mt-1 pr-8">
+                              اگر می‌خواید خروجی خوانا و مرتب برای انسان باشه.
+                              <br/>
+                              <strong>مثال:</strong> لیست نکات یک مقاله یا متن تبلیغاتی.
+                            </p>
+                          </li>
+                          <li>
+                            <strong className="flex items-center gap-2"><span>⚡️</span><span>Mixed</span></strong>
+                            <p className="text-sm text-muted-foreground mt-1 pr-8">
+                              ترکیبی از هر دو، وقتی هم دقت ماشینی و هم خوانایی انسانی مهمه.
+                              <br/>
+                              <strong>مثال:</strong> توضیحات محصول با ساختار فنی + متن ساده برای مشتری.
+                            </p>
+                          </li>
+                        </ul>
+                         <p className="mt-4 pt-4 border-t border-border">
+                          <strong>👈 اگر نمی‌دونید کدوم بهتره، <span className="text-primary">Markdown</span> رو انتخاب کنید.</strong>
+                        </p>
+                      </AccordionContent>
+                    </AccordionItem>
+                  </Accordion>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
@@ -145,11 +192,11 @@ export function PromptForm({ onSubmit }: PromptFormProps) {
                           key={format.id}
                           className="flex items-center space-y-0"
                         >
-                           <FormLabel className="font-normal me-3">
+                          <Label htmlFor={format.id} className="font-normal mr-3 cursor-pointer">
                             {format.label}
-                          </FormLabel>
+                          </Label>
                           <FormControl>
-                            <RadioGroupItem value={format.id} />
+                            <RadioGroupItem value={format.id} id={format.id} />
                           </FormControl>
                         </FormItem>
                       ))}
@@ -191,5 +238,4 @@ export function PromptForm({ onSubmit }: PromptFormProps) {
   );
 }
 
-// Dummy Label component to satisfy type-checker
 const Label = (props: React.LabelHTMLAttributes<HTMLLabelElement>) => <label {...props} />;
