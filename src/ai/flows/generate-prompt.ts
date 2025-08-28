@@ -38,7 +38,7 @@ Description: {{{description}}}
 Use Case: {{{useCase}}}
 Format: {{{format}}}
 
-{{#if (eq format "XML")}}
+{{#if format.XML}}
 <prompt>
   <instruction>
     متن زیر را برای مدیران غیرفنی خلاصه کن. زبان خلاصه باید ساده و قابل فهم باشد.
@@ -51,7 +51,13 @@ Format: {{{format}}}
   </document_to_summarize>
 </prompt>
 {{else}}
-Optimized Prompt:
+You will generate an optimized prompt. This is the user's request:
+{{{description}}}
+
+The use case is: {{{useCase}}}.
+The desired format is: {{{format}}}.
+
+Create a well-structured and effective prompt based on this information. If the format is Markdown, use appropriate Markdown syntax. If it is mixed, you can combine different formatting styles.
 {{/if}}`,
 });
 
@@ -62,7 +68,14 @@ const generateOptimizedPromptFlow = ai.defineFlow(
     outputSchema: GenerateOptimizedPromptOutputSchema,
   },
   async input => {
-    const {output} = await prompt(input);
+    // A little hack to make the Handlebars `if` work as expected for a string value.
+    const modifiedInput = {
+      ...input,
+      format: {
+        [input.format]: true,
+      },
+    };
+    const {output} = await prompt(modifiedInput);
     return output!;
   }
 );
