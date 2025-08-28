@@ -41,10 +41,10 @@ Format: {{{format}}}
 {{#if (eq format "XML")}}
 <prompt>
   <instruction>
-    {{{description}}}
+    متن زیر را برای مدیران غیرفنی خلاصه کن. زبان خلاصه باید ساده و قابل فهم باشد.
   </instruction>
   <context>
-    The use case is: {{{useCase}}}.
+    این متن، یک گزارش مالی در مورد عملکرد سه ماهه سوم شرکت است.
   </context>
   <document_to_summarize>
     [متن طولانی گزارش مالی در اینجا قرار می‌گیرد]
