@@ -38,7 +38,21 @@ Description: {{{description}}}
 Use Case: {{{useCase}}}
 Format: {{{format}}}
 
-Optimized Prompt:`, // instruction to generate optimized prompt
+{{#if (eq format "XML")}}
+<prompt>
+  <instruction>
+    {{{description}}}
+  </instruction>
+  <context>
+    The use case is: {{{useCase}}}.
+  </context>
+  <document_to_summarize>
+    [متن طولانی گزارش مالی در اینجا قرار می‌گیرد]
+  </document_to_summarize>
+</prompt>
+{{else}}
+Optimized Prompt:
+{{/if}}`,
 });
 
 const generateOptimizedPromptFlow = ai.defineFlow(
