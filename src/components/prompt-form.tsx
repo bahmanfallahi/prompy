@@ -145,12 +145,12 @@ export function PromptForm({ onSubmit }: PromptFormProps) {
                           key={format.id}
                           className="flex items-center space-x-3 space-y-0 rtl:space-x-reverse"
                         >
+                           <FormLabel className="font-normal">
+                            {format.label}
+                          </FormLabel>
                           <FormControl>
                             <RadioGroupItem value={format.id} />
                           </FormControl>
-                          <FormLabel className="font-normal">
-                            {format.label}
-                          </FormLabel>
                         </FormItem>
                       ))}
                     </RadioGroup>
