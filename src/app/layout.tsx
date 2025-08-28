@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Vazirmatn } from 'next/font/google';
 import './globals.css';
 import { cn } from '@/lib/utils';
 import { Header } from '@/components/header';
 import { Footer } from '@/components/footer';
 import { Toaster } from '@/components/ui/toaster';
 
-const inter = Inter({ subsets: ['latin'], variable: '--font-sans' });
+const vazirmatn = Vazirmatn({ subsets: ['arabic', 'latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: 'Farsi PromptSmith',
@@ -23,7 +23,7 @@ export default function RootLayout({
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',
-          inter.variable
+          vazirmatn.variable
         )}
       >
         <div className="relative flex min-h-dvh flex-col bg-background">
