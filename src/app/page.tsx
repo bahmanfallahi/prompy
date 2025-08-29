@@ -12,9 +12,7 @@ export default function Home() {
         پرامپی
       </h1>
       <p className="max-w-2xl text-lg text-muted-foreground md:text-xl mb-8">
-        با پرامپی، پرامپت‌های حرفه‌ای و بهینه برای هوش مصنوعی بسازید.
-        به سادگی نیاز خود را توصیف کنید و ما بهترین پرامپت را برای شما تولید
-        می‌کنیم.
+        پرامپت‌های حرفه‌ای بسازید. نتایج شگفت‌انگیز بگیرید. همین الان شروع کنید.
       </p>
       <Button asChild size="lg">
         <Link href="/build">همین حالا بسازید</Link>
